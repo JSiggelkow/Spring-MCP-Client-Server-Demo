@@ -1,0 +1,10 @@
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+    mcp:
+      client:
+        sse:
+          connections:
+            mcp-server:
+              url: http://mcp-server:8080
