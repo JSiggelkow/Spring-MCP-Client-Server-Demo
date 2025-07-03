@@ -1,0 +1,26 @@
+name: mcp-demo
+services:
+  mcp-client:
+    container_name: mcp-client
+    build:
+      context: ./mcp-client
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      mcp-server:
+        condition: service_healthy
+
+  mcp-server:
+    container_name: mcp-server
+    build:
+      context: ./mcp-server
+      dockerfile: Dockerfile
+    expose:
+      - "8080"
+    healthcheck:
+      test: "wget -T5 -qO- http://localhost:8080/actuator/health | grep UP || exit 1"
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 10s
