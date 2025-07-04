@@ -15,7 +15,7 @@ public class AIService {
 	private final OpenAiChatModel chatModel;
 	private final SyncMcpToolCallbackProvider toolCallbackProvider;
 
-	public String askAI(String prompt) {
+	public String promptAI(String prompt) {
 		return Optional.ofNullable(ChatClient.create(chatModel)
 						.prompt(prompt)
 						.toolCallbacks(toolCallbackProvider.getToolCallbacks())

@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("prompt")
 @RequiredArgsConstructor
 public class AIController {
 
 	private final AIService aiService;
 
 	@PostMapping
-	public ResponseEntity<String> askAI(@RequestBody String prompt) {
-		return ResponseEntity.ok(aiService.askAI(prompt));
+	public ResponseEntity<String> prompt(@RequestBody String prompt) {
+		return ResponseEntity.ok(aiService.promptAI(prompt));
 	}
 }

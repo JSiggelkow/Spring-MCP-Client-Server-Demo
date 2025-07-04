@@ -1,5 +1,8 @@
 package de.iks.mcp_server;
 
+import de.iks.mcp_server.service.CalendarService;
+import de.iks.mcp_server.service.GeoService;
+import de.iks.mcp_server.service.WeatherService;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +17,7 @@ public class McpServerApplication {
 	}
 
 	@Bean
-	public ToolCallbackProvider geoTools(GeoService geoService) {
-		return MethodToolCallbackProvider.builder().toolObjects(geoService).build();
+	public ToolCallbackProvider geoTools(GeoService geoService, WeatherService weatherService, CalendarService calendarService) {
+		return MethodToolCallbackProvider.builder().toolObjects(geoService, weatherService, calendarService).build();
 	}
 }
